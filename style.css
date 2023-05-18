@@ -1,15 +1,41 @@
 .displayFilms,
-.displayTvShows{
+.displayTvShows, 
+.displayMovies
+{
     display: flex;
     flex-wrap: nowrap;
     overflow: auto;
     max-width: 100%;    
+    flex-direction: row;
+}
+#moviesByCateg{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 1%;
+}
+#moviesByCateg > div {
+    margin-bottom: 1%; 
+}
+
+#displayCategories{
+    display: flex;
+    max-width: 100%;    
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #DE97F4;
+    border-radius: 15px;
+    
 }
 
 header{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    width: 100%;
+}
+header img:first-child {
+    width: 50%;
 }
 body{
     background-color: #353535;
@@ -33,3 +59,10 @@ justify-content: center;
     width: 550px;
     padding: 20px;
   }
+  .banniere{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+

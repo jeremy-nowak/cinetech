@@ -1,33 +1,95 @@
-let displayMovies = document.querySelector('#displayMovies');
-let button = document.querySelector('#button')
+let moviesByCateg = document.querySelector("#moviesByCateg");
+let displayCategories = document.querySelector("#displayCategories");
+
 const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGJkYmQ1MmM2ZWNkNmJhNTZjY2Y4NTk2OTJkZDcwYSIsInN1YiI6IjY0NjFlNTQ0ZWY4YjMyMDBlM2FkZTc4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KwY4O7MURvIiWbGpBdgRdc8FL6dj-gEZvGJMHZi1umk",
-    },
-  };
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGJkYmQ1MmM2ZWNkNmJhNTZjY2Y4NTk2OTJkZDcwYSIsInN1YiI6IjY0NjFlNTQ0ZWY4YjMyMDBlM2FkZTc4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KwY4O7MURvIiWbGpBdgRdc8FL6dj-gEZvGJMHZi1umk",
+  },
+};
+
+async function categoriesDisplay() {
+  displayCategories.innerHTML = "";
+  const promise = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=d4bdbd52c6ecd6ba56ccf859692dd70a&language=en"
+  );
+  const categ = await promise.json();
+
+  for (const category of categ.genres) {
+    const div = document.createElement("div");
+    div.classList.add("displayFilms");
+    div.setAttribute("data-id", category.id);
 
 
-async function theMovies(){
-    displayMovies.innerHTML = "";
-    const rand = Math.floor(Math.random() * 500 )+1;
+    const checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox");
+    const label = document.createElement("label");
+    label.innerHTML = category.name;
+    const miniDiv = document.createElement("div");
+    div.classList.add("miniDiv");
 
-    const promise = await fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&page=" + rand, options);
-    const movies = await promise.json();
+    div.appendChild(label);
 
+    checkbox.classList.add("genre", "displayFilms");
+    checkbox.setAttribute("data-id", category.id);
+
+    checkbox.innerHTML = category.name;
+    miniDiv.appendChild(checkbox);
+
+    div.appendChild(miniDiv);
+    displayCategories.appendChild(div);
+  }
+}
+
+async function filmByCategorie(categories = null) {
+  moviesByCateg.innerHTML = "";
+ 
+  const promise = await fetch(
+    "https://api.themoviedb.org/3/discover/movie?with_genres=" + categories,
+    options
+  );
+  const filmByCat = await promise.json();
+
+  for (const films of filmByCat.results) {
     const div = document.createElement("div");
     const title = document.createElement("h3");
     const divImg = document.createElement("img");
+    div.classList.add("oneElement");
 
-    console.log(movies.results);
+    title.innerHTML = films.title;
 
-    
+    divImg.src = `https://image.tmdb.org/t/p/w500${films.poster_path}`;
+    divImg.alt = films.name;
+
+    div.appendChild(title);
+    div.appendChild(divImg);
+    moviesByCateg.appendChild(div);
+  }
 }
 
-theMovies();
 
+// ------------------------------------addEventListener Start----------------------
+let categories = [];
 
+displayCategories.addEventListener("click", function (e) {
+  if (e.target.classList.contains("displayFilms")) {
+    const idCategory = e.target.getAttribute("data-id");
 
+    if (categories.includes(idCategory)) {
 
+      const index = categories.indexOf(idCategory);
+      categories.splice(index, 1);
+    } else {
+      
+      categories.push(idCategory);
+    }
+    console.log(categories);
+
+    filmByCategorie(categories);
+    
+  }
+});
+categoriesDisplay();
+filmByCategorie();
