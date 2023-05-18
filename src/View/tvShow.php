@@ -10,7 +10,12 @@
     <title>Series</title>
 </head>
 <body>
-    <h1>Random Tv Shows</h1>
-    <div id="displaySeries"></div>
+    <header>
+        <div class="banniere">
+            <img src="img/tvShowCateg.png" alt="">
+        </div>
+        <div id="displayCategories"></div>
+    </header>
+    <div id="tvShowByCateg" class="tvShowByCateg"></div>
 </body>
 </html>
