@@ -17,6 +17,10 @@ $router->map('GET', '/movies', function () {
     require "src/View/movies.php";
 }, 'movies');
 
+$router->map('GET', '/detail', function () {
+    require "src/View/detail.php";
+}, 'detailElement');
+
 
 // match
 $match = $router->match();
