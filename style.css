@@ -1,6 +1,7 @@
 .displayFilms,
 .displayTvShows, 
 .displayMovies
+
 {
     display: flex;
     flex-wrap: nowrap;
@@ -8,7 +9,8 @@
     max-width: 100%;    
     flex-direction: row;
 }
-#moviesByCateg{
+#moviesByCateg,
+#tvShowByCateg{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -17,16 +19,20 @@
 #moviesByCateg > div {
     margin-bottom: 1%; 
 }
+#tvShowByCateg > div{
+    margin-bottom: 1%;
+}
 
 #displayCategories{
     display: flex;
     max-width: 100%;    
     flex-direction: row;
     justify-content: space-around;
-    background-color: #DE97F4;
+    background-color: #7A7A7A;
     border-radius: 15px;
-    
 }
+
+
 
 header{
     display: flex;
