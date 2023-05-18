@@ -10,7 +10,12 @@
     <title>Movies</title>
 </head>
 <body>
-    <h1>Random films</h1>
-    <div id="displayMovies"></div>
+    <header>
+        <div class="banniere">
+            <img src="img/filmbycateg.png" alt="">
+        </div>
+        <div id="displayCategories"></div>
+    </header>
+    <div id="moviesByCateg" class="moviesByCateg"></div>
 </body>
 </html>
