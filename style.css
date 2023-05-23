@@ -1,7 +1,6 @@
 .displayFilms,
 .displayTvShows, 
 .displayMovies
-
 {
     display: flex;
     flex-wrap: nowrap;
@@ -31,6 +30,13 @@
     background-color: #7A7A7A;
     border-radius: 15px;
 }
+#displayDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 15px;
+
+}
 
 
 
@@ -41,7 +47,7 @@ header{
     width: 100%;
 }
 header img:first-child {
-    width: 50%;
+    width: 25%;
 }
 body{
     background-color: #353535;
@@ -62,7 +68,6 @@ justify-content: center;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    width: 550px;
     padding: 20px;
   }
   .banniere{
@@ -70,5 +75,14 @@ justify-content: center;
     display: flex;
     justify-content: center;
   }
+.titreAndImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.titreAndImg img{
+    width: 30%;
+}
 
 

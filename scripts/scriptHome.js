@@ -22,7 +22,7 @@ async function displayHome() {
   let count1 = 0;
 
   for (const movie of movies.results) {
-    if (count1 === 5) {
+    if (count1 === 10) {
       break;
     }
     const div = document.createElement("div");
@@ -43,7 +43,7 @@ async function displayHome() {
     count1++;
   }
 
-  // -----------------Affichage des séries par 5------
+  // -----------------Affichage des séries par 10------
 
   const promiseTvShow = await fetch(
     "https://api.themoviedb.org/3/discover/tv?page=" + rand,
@@ -53,7 +53,7 @@ async function displayHome() {
   let count = 0;
 
   for (const tvShow of tvShows.results) {
-    if (count === 5) {
+    if (count === 10) {
       break;
     }
 
