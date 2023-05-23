@@ -54,19 +54,27 @@ async function filmByCategorie(categories = null) {
 
   for (const films of filmByCat.results) {
     const div = document.createElement("div");
-    const title = document.createElement("h3");
+    
     const divImg = document.createElement("img");
     div.classList.add("oneElement");
+    div.setAttribute("data-idMoovie", films.id)
+    divImg.setAttribute("data-idMoovie", films.id)
 
-    title.innerHTML = films.title;
+
+
+    //-------- Setting up class to be able to target it in my event
+    div.classList.add("detailMovie")
+    divImg.classList.add("detailMovie")
+  // -----------------
+    console.log(div)
 
     divImg.src = `https://image.tmdb.org/t/p/w500${films.poster_path}`;
     divImg.alt = films.name;
 
-    div.appendChild(title);
     div.appendChild(divImg);
     moviesByCateg.appendChild(div);
   }
+
 }
 
 
@@ -76,20 +84,23 @@ let categories = [];
 displayCategories.addEventListener("click", function (e) {
   if (e.target.classList.contains("displayFilms")) {
     const idCategory = e.target.getAttribute("data-id");
-
     if (categories.includes(idCategory)) {
-
       const index = categories.indexOf(idCategory);
       categories.splice(index, 1);
     } else {
-      
       categories.push(idCategory);
     }
-    console.log(categories);
-
     filmByCategorie(categories);
-    
   }
 });
+
+
+moviesByCateg.addEventListener("click", function(e){
+  if(e.target.classList.contains("detailMovie")){
+    const idMovie = e.target.getAttribute("data-idMoovie")
+    window.location.href = "/cinetech/movie/" + idMovie;
+  }
+})
+
 categoriesDisplay();
 filmByCategorie();
