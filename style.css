@@ -12,8 +12,9 @@
 #tvShowByCateg{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 1%;
+    justify-content: center;
+    gap: 2%;
+    margin-top: 5%;
 }
 #moviesByCateg > div {
     margin-bottom: 1%; 
@@ -32,9 +33,7 @@
 }
 #displayDetail{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border-radius: 15px;
+    flex-direction: column;
 
 }
 
@@ -63,17 +62,34 @@ flex-direction: row;
 justify-content: center;
 }
 .oneElement {
-
-    background-color: #7a7a7a;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+
+  }
+  .imgActor{
+    display: flex;
+    justify-content: space-evenly   ;
+    
+  }
+.nmActor{
+    display: flex;
+    justify-content: space-evenly;
+}
+  .oneElement img{
+    border-radius: 15px;
+
+  }
+  .content{
+
+display: flex;  
+justify-content: space-evenly;
+}
+  .titreAndImg{
+    width: 40%;
   }
   .banniere{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
 .titreAndImg {
     display: flex;
@@ -82,7 +98,138 @@ justify-content: center;
     flex-direction: column;
 }
 .titreAndImg img{
-    width: 30%;
+    width: 550px;
 }
 
+.connexRegis{
+    display: flex;
+    justify-content: center;
+}
+.login,.register{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* -------------------Responsive start---------------------------- */
+
+@media only screen and (max-width: 1024px) {
+    header img:first-child {
+        width: 40%;
+    }
+
+    .titreAndImg img {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    header img:first-child {
+        width: 60%;
+    }
+
+    .titreAndImg img {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header img:first-child {
+        width: 75%;
+    }
+
+    .titreAndImg img {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    header img:first-child {
+        width: 90%;
+    }
+
+    .titreAndImg img {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    header img:first-child {
+        width: 40%;
+    }
+
+    .titreAndImg img {
+        width: 40%;
+    }
+
+    #displayCategories {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    header img:first-child {
+        width: 60%;
+    }
+
+    .titreAndImg img {
+        width: 60%;
+    }
+
+    #displayCategories {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header img:first-child {
+        width: 75%;
+    }
+
+    .titreAndImg img {
+        width: 75%;
+    }
+
+    #displayCategories {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+/* Animation d'apparition du formulaire de login */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Animation d'apparition du formulaire de register */
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Appliquer les animations aux formulaires */
+  #formConnexion {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  #formRegis {
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
 

@@ -10,6 +10,7 @@ const options = {
   },
 };
 
+// ---------Function creation start----------------------
 async function categoriesDisplay() {
   displayCategories.innerHTML = "";
   const promise = await fetch(
@@ -76,9 +77,11 @@ async function filmByCategorie(categories = null) {
   }
 
 }
+// -------------Function creation END--------------------
 
 
-// ------------------------------------addEventListener Start----------------------
+
+// ------------addEventListener Start-------------------
 let categories = [];
 
 displayCategories.addEventListener("click", function (e) {
@@ -101,6 +104,7 @@ moviesByCateg.addEventListener("click", function(e){
     window.location.href = "/cinetech/movie/" + idMovie;
   }
 })
+//------------addEventListener end----------------------
 
 categoriesDisplay();
 filmByCategorie();

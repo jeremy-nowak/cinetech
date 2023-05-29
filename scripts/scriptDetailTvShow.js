@@ -1,8 +1,4 @@
-let displayDetail;
-
-window.addEventListener('DOMContentLoaded', () => {
-  displayDetail = document.querySelector("#displayDetail");
-});
+let displayDetail = document.querySelector("#displayDetail");
 
 const options = {
   method: "GET",
@@ -12,58 +8,20 @@ const options = {
   },
 };
 
-idDetail = window.location.search;
-console.log(idDetail)
-async function displayOne(idDetail) {
-  // idDetail = 502356;
-  const promise = await fetch("https://api.themoviedb.org/3/tv/" + idDetail + "?append_to_response=credits&language=fr-FR",options);
+// --------------Taking id in the url--------------------
+const idDetail = window.location.pathname.split("/").pop();
+
+
+// ----------------------------function creation start--------------------------------
+
+async function displayOne() {
+
+  const promise = await fetch("https://api.themoviedb.org/3/tv/" + idDetail + "?language=fr-FR&append_to_response=credits",options);
   const detail = await promise.json();
 
-  console.log(detail);
-
-  // const div = document.createElement("div");
-  // const title = document.createElement("h3");
-  // const divImg = document.createElement("img");
-
-  // const overview = document.createElement("h2")
-  // const ahref = document.createElement("a")
-  // const link = document.createElement("p")
-  // const release = document.createElement("p")
-  // const score = document.createElement("p")
-  // const voteCount = document.createElement("p")
-  // const budget = document.createElement("p")
-  // const revenue = document.createElement("p")
-
-  // div.classList.add("oneElement");
-
-  // title.innerHTML = detail.title;
-
-  // divImg.src = `https://image.tmdb.org/t/p/w500${detail.poster_path}`;
-  // divImg.alt = detail.name;
-  // overview.innerHTML = detail.overview
-  // release.innerHTML = detail.release_date
-  // score.innerHTML = detail.vote_average
-  // voteCount.innerHTML = detail.vote_count
-  // budget.innerHTML = detail.budget
-  // revenue.innerHTML = detail.revenue
-  // ahref.innerHTML = detail.homepage
-
-  // div.appendChild(title);
-  // div.appendChild(divImg);
-  // div.appendChild(overview);
-  // div.appendChild(ahref)
-  // div.appendChild(ahref)
-  // div.appendChild(link);
-  // div.appendChild(release);
-  // div.appendChild(score);
-  // div.appendChild(voteCount);
-  // div.appendChild(budget);
-  // div.appendChild(revenue);
-  // (réalisateur, types, pays d’origine, résumé, acteurs,
 
 
-  // Boucle pour parcourir le tableau production_companies 
-  // et transformation en string pour l'afficher
+  // console.log(detail);
 
   let prod = detail.production_companies
   let prodArray = []
@@ -84,35 +42,74 @@ async function displayOne(idDetail) {
   }
   let genreString = genreArray.toString()
 
-// Recuperation du nom du producteur
-  let director = detail.credits.crew[0].name
+// Here i search for the name of the directors
+let directorArray = [];
+let directorString = "";
+
+for (const producteur of detail.credits.crew) {
+  
+  if(producteur.job === "Director"){
+     directorArray.push(producteur.name)
+  }
+   directorString = directorArray.toString()
+}
+
+let actorArray = [];
+let actorString = ""
+
+for (const actor of detail.credits.cast) {
+  if(actor.known_for_department === "Acting"){
+     actorArray.push(actor.name)
+  }
+  actorString = actorArray.toString()
+}
+
 
 let countries = "Pays de production: "
   for (const country of detail.production_countries) {
     countries += country.name + ", "
-    
   }
   
-
-  displayDetail.innerHTML += 
-  `<div class="oneElement">
-  <div class="titreAndImg">
-  <h1 class="title">Titre: ${detail.title}</h1>
-  <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
-  </div>
-  <h2 class="overview">Résumé: ${detail.overview}</h2>
-  <div class="content" id="content">
-  <p class="release">Date de sortie: ${detail.release_date}</p>
-  <p class="score">Note sur 10: ${detail.vote_average}</p>
-  <p class="voteCount">nombre de votes: ${detail.vote_count}</p>
-  <p class="acteurs">Productions: ${prodString}</p>
-  <p class="genre">Genre: ${genreString}</p>
-  <p class="director">Réalisateur: ${director}</p
-  <p class="countries">${countries}</p
-  </div>
-</div>`
+  const baseUrl = 'https://image.tmdb.org/t/p/w200';
+  let actorContent = "";
   
+  for (const actor of detail.credits.cast) {
+    if (actor.profile_path) {
+      const imageUrl = `${baseUrl}${actor.profile_path}`;
+      actorContent += `
+        <div class="actorItem">
+          <img src="${imageUrl}" alt="${actor.name}">
+          <p>${actor.name}</p>
+        </div>
+      `;
+    }
+  }
+  
+  displayDetail.innerHTML += `
+    <div class="content" id="content">
+      <div class="oneElementDetail">
+        <h2 class="overview">Résumé: ${detail.overview}</h2>
+        <p class="release">Date de sortie: ${detail.first_air_date}</p>
+        <p class="score">Note sur 10: ${detail.vote_average}</p>
+        <p class="voteCount">nombre de votes: ${detail.vote_count}</p>
+        <p class="acteurs">Productions: ${prodString}</p>
+        <p class="actor">Acteurs: ${actorString}</p>
+        <p class="genre">Genre: ${genreString}</p>
+        <p class="director">Réalisateur: ${directorString}</p>
+        <p class="countries">${countries}</p>
+      </div>
+      <div class="titreAndImg">
+        <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
+      </div>
+    </div>
+    <div class="imgActor">
+      ${actorContent}
+    </div>
+  `;
+  
+
 }
+// ----------------------------function creation end--------------------------------
 
 
 displayOne()

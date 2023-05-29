@@ -16,6 +16,13 @@ const idDetail = window.location.pathname.split("/").pop();
 console.log(idDetail)
 
 
+// ----------------------------function creation start--------------------------------
+
+async function displayComment(idDetail){
+const promise = await fetch("https://api.themoviedb.org/3/movie/"+ idDetail+"/reviews?language=fr-FR&page=1', options")
+
+
+}
 
 async function displayOne(idDetail) {
   const promise = await fetch("https://api.themoviedb.org/3/movie/" + idDetail + "?language=fr-FR&append_to_response=credits",options);
@@ -53,6 +60,8 @@ let countries = "Pays de production: "
   for (const country of detail.production_countries) {
     countries += country.name + ", "
   }
+
+
   for (const producteur of detail.credits.crew) {
 
     if(producteur.job === "Director"){
@@ -60,12 +69,28 @@ let countries = "Pays de production: "
        directorArray.push(producteur.name)
     }
      directorString = directorArray.toString()
-    
   }
+
+
+let actorArray = [];
+let actorString = ""
+
+for (const actor of detail.credits.cast) {
+  console.log(actor)
+  if(actor.known_for_department === "Acting"){
+    console.log(actor.name)
+     actorArray.push(actor.name)
+  }
+  actorString = actorArray.toString()
+  console.log(actorString)
+}
+
+  
+
   displayDetail.innerHTML += 
   `<div class="oneElement">
   <div class="titreAndImg">
-  <h1 class="title">Titre: ${detail.title}</h1>
+  <h1 class="title">${detail.title}</h1>
   <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
   </div>
   <h2 class="overview">Résumé: ${detail.overview}</h2>
@@ -74,15 +99,16 @@ let countries = "Pays de production: "
   <p class="score"><h4>Note sur 10:${detail.vote_average}</p></h4>
   <p class="voteCount"><h4>nombre de votes: ${detail.vote_count}</p></h4>
   <p class="acteurs"><h4>Productions: ${prodString}</p></h4>
+  <p class="actor"><h4>Acteurs: ${actorString}</p></h4>
   <p class="genre"><h4>Genre: ${genreString}</p></h4>
   <p class="director"><h4>Réalisateur: ${directorString}</p</h4>
   <p class="countries"><h4>${countries}</p</h4>
   </div>
 </div>`
-  
 
 
 }
+// ----------------------------Function creation end--------------------------------
 
 
 displayOne(idDetail)

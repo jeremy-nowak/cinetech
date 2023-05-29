@@ -57,22 +57,23 @@ const options = {
     for (const tv of tvShow.results) {
         console.log(tv.name)
       const div = document.createElement("div");
-      const title = document.createElement("h3");
       const divImg = document.createElement("img");
-      div.classList.add("oneElement");
+
+      div.classList.add("oneElement", "detailTvShow");
+      divImg.classList.add("detailTvShow")
+      div.setAttribute("data-idTvShow", tv.id)
+      divImg.setAttribute("data-idTvShow", tv.id)
   
-      title.innerHTML = tv.name;
   
       divImg.src = `https://image.tmdb.org/t/p/w500${tv.poster_path}`;
       divImg.alt = tv.name;
   
-      div.appendChild(title);
       div.appendChild(divImg);
       tvShowByCateg.appendChild(div);
     }
   }
 
-//   ---------------------------addEventListener start---------------
+//   ---------------addEventListener start---------------
 
 
 let categories = [];
@@ -96,6 +97,14 @@ displayCategories.addEventListener("click", function (e) {
   }
 });
 
+tvShowByCateg.addEventListener("click", function(e){
+  if(e.target.classList.contains("detailTvShow")){
+    const idTvShow = e.target.getAttribute("data-idTvShow")
+    window.location.href = "/cinetech/tvShow/" + idTvShow;
+  }
+})
+
+// ---------------------------------addEventListener end--------------------------
 
   
   categoriesDisplay()
