@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+use App\Controller\AuthController;
 require "vendor/autoload.php";
 $router = new AltoRouter();
 $router->setBasePath('/cinetech');
@@ -24,6 +27,30 @@ $router->map('GET', '/tvShow/[i:id]', function ($id) {
 $router->map('GET', '/movie/[i:id]', function ($id) {
     require "src/View/detailMovie.php";
 }, 'detailMovie');
+
+
+$router->map('GET', '/register', function () {
+    require "src/View/register.php";
+}, 'registerForm');
+
+$router->map('POST', '/register', function () {
+
+    $authControleur = new AuthController();
+    $authControleur->register();
+    
+}, 'register');
+
+$router->map('GET', '/connexion', function () {
+    require "src/View/login.php";
+}, 'connexionForm');
+$router->map('POST', '/connexion', function () {
+
+    $authControleur = new AuthController();
+    $authControleur->userConnect();
+    require "src/View/home.php";
+    
+}, 'connexion');
+
 
 
 
