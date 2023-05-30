@@ -83,22 +83,23 @@ async function displayHome() {
   }
 }
 
-async function displayLogin() {
-  let div = document.querySelector(".titre");
-  div.innerHTML = "";
+// async function displayLogin() {
+  
+//   let div = document.querySelector(".titre");
 
-  let promise = await fetch("/cinetech/connexion");
-  let logForm = await promise.text();
+//   div.innerHTML = "";
+//   let promise = await fetch("/cinetech/connexion");
+//   let logForm = await promise.text();
+//   div.innerHTML = logForm;
+// }
 
-  div.innerHTML = logForm;
 
-  let formConnexion = document.querySelector("#formConnexion");
 
   // console.log(formConnexion);
 
   // logForm.classList.add("fadeIn"); // Ajouter la classe fadeIn
   // registerForm.classList.remove("slideIn"); // Supprimer la classe slideIn
-}
+
 
 async function displayRegister() {
   let div = document.querySelector(".titre");
@@ -134,9 +135,10 @@ displayTvShows.addEventListener("click", function (e) {
 
 logRegDisplay.addEventListener("click", async function (e) {
   e.preventDefault();
+  console.log('ici');
 
   if (e.target.classList.contains("displayFormLogin")) {
-    displayLogin();
+    window.location.replace("/cinetech/connexion")
   }
 });
 
@@ -149,3 +151,6 @@ logRegDisplay.addEventListener("click", async function (e) {
   // ---------addEventListener end--------
 });
 displayHome();
+
+
+

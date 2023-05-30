@@ -37,6 +37,8 @@ class AuthController
 
     public function userConnect()
     {
+        var_dump("$_POST");
+        die();
         $usermodel = new UserModel();
         if (!empty($_POST['email']) && !empty($_POST['pass'])) {
 
@@ -52,12 +54,19 @@ class AuthController
                         'login' => $userInfo[0]['login'],
                         'email' => $userInfo[0]['email'],
                     ];
+                    require "src/View/home.php";
+
                     
                 }
             }
         } else {
             echo "Error";
         }
+    }
+
+    public function displayLogForm(){
+        require_once "src/View/login.php";
+
     }
 
 }

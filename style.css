@@ -65,10 +65,15 @@ justify-content: center;
     padding: 20px;
 
   }
+  .actorItem img{
+    border-radius: 15px;
+  }
   .imgActor{
     display: flex;
     justify-content: space-evenly   ;
-    
+    background-color: #7A7A7A;
+    border-radius: 15px;
+    box-shadow: 2px;
   }
 .nmActor{
     display: flex;
@@ -85,6 +90,9 @@ justify-content: space-evenly;
 }
   .titreAndImg{
     width: 40%;
+  }
+  .titreAndImg img{
+    border-radius: 15px;
   }
   .banniere{
     width: 100%;

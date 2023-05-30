@@ -41,13 +41,14 @@ $router->map('POST', '/register', function () {
 }, 'register');
 
 $router->map('GET', '/connexion', function () {
-    require "src/View/login.php";
+    $authControleur = new AuthController();
+    $authControleur-> displayLogForm();
 }, 'connexionForm');
+
 $router->map('POST', '/connexion', function () {
 
     $authControleur = new AuthController();
     $authControleur->userConnect();
-    require "src/View/home.php";
     
 }, 'connexion');
 
