@@ -24,10 +24,8 @@ public function __construct()
             if (isset($_SESSION['user'])) {
                 $this->id = $_SESSION['user']['id'];
                 $this->login = $_SESSION['user']['login'];
-                $this->country = $_SESSION['user']['country'];
                 $this->email = $_SESSION['user']['email'];
-                $this->role = $_SESSION['user']['role'];
-            }
+                }
 
 }
 
@@ -63,9 +61,7 @@ public function createUser(array $values)
             $_SESSION['user'] = [
                 'id' => $result['id_user'],
                 'login' => $result['login'],
-                'country' => $result['country'],
                 'email' => $result['email'],
-                'role' => $result['role']
             ];
             echo "Successfull connection !";
         } else {

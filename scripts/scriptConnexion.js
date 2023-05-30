@@ -23,6 +23,15 @@ function connexion(){
             body: data,
 
         })
+        .then((response) => response.text())
+        .then((response) => {
+            if(response === "ok"){
+                window.location.href = "/cinetech/"  
+
+            }
+        })
+
+
     }
 }
 
