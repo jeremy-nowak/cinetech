@@ -53,6 +53,20 @@ $router->map('POST', '/connexion', function () {
     
 }, 'connexion');
 
+$router->map('GET', '/logout', function () {
+    $authControleur = new AuthController();
+    $authControleur->logout();
+}, 'logout');
+
+$router->map('GET', '/profil', function () {
+    $authControleur = new AuthController();
+    $authControleur->profil();
+}, 'profil');
+
+
+
+
+
 
 
 

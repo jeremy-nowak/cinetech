@@ -1,6 +1,7 @@
 let displayFilms = document.querySelector("#displayFilms");
 let displayTvShows = document.querySelector("#displayTvShows");
 let logRegDisplay = document.querySelector("#logRegDisplay");
+let logout = document.querySelector('#logout');
 
 const options = {
   method: "GET",
@@ -116,6 +117,9 @@ async function displayRegister() {
   // registerForm.classList.remove("fadeIn"); // Supprimer la classe slideIn
 }
 
+function disconnect(){
+  
+}
 // -------function creation end-------------------
 
 // ----------- addEventListener start------------
@@ -133,21 +137,32 @@ displayTvShows.addEventListener("click", function (e) {
   }
 });
 
-logRegDisplay.addEventListener("click", async function (e) {
-  e.preventDefault();
-  console.log('ici');
 
+logRegDisplay.addEventListener("click", async function (e) {
+  
   if (e.target.classList.contains("displayFormLogin")) {
+    e.preventDefault();
     window.location.replace("/cinetech/connexion")
-  }
-});
 
-logRegDisplay.addEventListener("click", async function (e) {
-  e.preventDefault();
-
-  if (e.target.classList.contains("displayFormRegister")) {
+  }else if (e.target.classList.contains("displayFormRegister")) {
+    e.preventDefault();
     displayRegister();
-  }
+
+   }
+  //  else if(e.target.classList.contains("logout")){
+  //   const promise = await fetch("/cinetech/logout")
+  //   const response = await promise.text()
+  //     if(response === "ok"){
+  //       window.location.href = "/cinetech/"  
+  //   }
+  // }
+
+  else if(e.target.classList.contains("profilAccount")){
+        window.location.href = "/cinetech/profil"  
+    }
+  
+  
+
   // ---------addEventListener end--------
 });
 displayHome();

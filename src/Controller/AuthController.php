@@ -63,7 +63,20 @@ class AuthController
 
     public function displayLogForm(){
         require_once "src/View/login.php";
+    }
 
+    public function displayRegForm(){
+        require_once "src/View/register.php";
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header("Location: /cinetech");
+    }
+    
+    public function profil(){
+        require_once "src/View/profil.php";
     }
 
 }
