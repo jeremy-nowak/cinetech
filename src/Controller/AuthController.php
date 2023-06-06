@@ -61,6 +61,11 @@ class AuthController
         }
     }
 
+
+    public function AddToFavorites(){
+        
+    }
+
     public function displayLogForm(){
         require_once "src/View/login.php";
     }

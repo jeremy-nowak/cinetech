@@ -64,6 +64,15 @@ $router->map('GET', '/profil', function () {
 }, 'profil');
 
 
+$router->map('POST', '/addToFavorite', function () {
+
+    $authControleur = new AuthController();
+    $authControleur->userConnect();
+    
+}, 'favorites');
+
+
+
 
 
 

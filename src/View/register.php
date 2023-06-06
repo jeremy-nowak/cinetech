@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="scripts/scriptAuth.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9e12c4c238.js" crossorigin="anonymous"></script>
+
     <title>Register</title>
 </head>
 <body>
+    <header>
+
+    <?php
+    require_once "header.php"
+    ?>
+
+    </header>
 
 <?php if (isset($error)){
         echo "<h2> $error </h2>";

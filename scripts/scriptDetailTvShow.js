@@ -1,4 +1,5 @@
 let displayDetail = document.querySelector("#displayDetail");
+let addToFavorites = document.getElementById('#addToFavorites');
 
 const options = {
   method: "GET",
@@ -11,8 +12,8 @@ const options = {
 // --------------Taking id in the url--------------------
 const idDetail = window.location.pathname.split("/").pop();
 
-
 // ----------------------------function creation start--------------------------------
+
 
 async function displayOne() {
 
@@ -70,10 +71,16 @@ let countries = "Pays de production: "
     countries += country.name + ", "
   }
   
+    // ------------------Boucle pour récuper 7 acteurs du film----------
+
   const baseUrl = 'https://image.tmdb.org/t/p/w200';
   let actorContent = "";
-  
+  let count2 = 0;
+
   for (const actor of detail.credits.cast) {
+    if(count2 === 4){
+      break;
+    }
     if (actor.profile_path) {
       const imageUrl = `${baseUrl}${actor.profile_path}`;
       actorContent += `
@@ -83,12 +90,14 @@ let countries = "Pays de production: "
         </div>
       `;
     }
+    count2++;
   }
   
   displayDetail.innerHTML += `
     <div class="content" id="content">
       <div class="oneElementDetail">
-        <h2 class="overview">Résumé: ${detail.overview}</h2>
+      <div class="infoTvShow">
+      <h2 class="overview">Résumé: ${detail.overview}</h2>
         <p class="release">Date de sortie: ${detail.first_air_date}</p>
         <p class="score">Note sur 10: ${detail.vote_average}</p>
         <p class="voteCount">nombre de votes: ${detail.vote_count}</p>
@@ -97,14 +106,18 @@ let countries = "Pays de production: "
         <p class="genre">Genre: ${genreString}</p>
         <p class="director">Réalisateur: ${directorString}</p>
         <p class="countries">${countries}</p>
+        <div class="imgActor">
+        ${actorContent}
       </div>
-      <div class="titreAndImg">
+        </div>
+
+        <div class="titreAndImg">
         <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
+        </div>
       </div>
+
     </div>
-    <div class="imgActor">
-      ${actorContent}
-    </div>
+
   `;
   
 

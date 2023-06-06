@@ -1,42 +1,40 @@
 <?php
+
 namespace App\Model;
+
 class UserModel extends Model
 {
     protected $bdd;
     protected $tablename = 'user';
     private $id;
     private $login;
-    private $country;
     private $email;
-    private $role;
 
-public function __construct()
-{
-    parent::__construct();
-    $this->id;
-    $this->login;
-    $this->country;
-    $this->email;
-    $this->role;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->id;
+        $this->login;
+        $this->email;
 
 
-            // get user data
-            if (isset($_SESSION['user'])) {
-                $this->id = $_SESSION['user']['id'];
-                $this->login = $_SESSION['user']['login'];
-                $this->email = $_SESSION['user']['email'];
-                }
+        // get user data
+        if (isset($_SESSION['user'])) {
+            $this->id = $_SESSION['user']['id'];
+            $this->login = $_SESSION['user']['login'];
+            $this->email = $_SESSION['user']['email'];
+        }
+    }
 
-}
+    public function createUser(array $values)
+    {
 
-public function createUser(array $values)
-{
+        $request = "INSERT INTO user (login, email, password) VALUES(:login, :email, :password)";
+        $insert = $this->bdd->prepare($request);
+        $response = $insert->execute($values);
+        return $response;
+    }
 
-    $request = "INSERT INTO user (login, email, password) VALUES(:login, :email, :password)";
-    $insert = $this->bdd->prepare($request);
-    $response = $insert->execute($values);
-    return $response;
-}
     public function connect($login, $password)
     {
         // Get user data where login = the login entered by the user
@@ -74,30 +72,30 @@ public function createUser(array $values)
     // {
 
     //     $request = "INSERT INTO user (email, password) VALUES(:email, :password)";
-        
+
     //     $insert = $this->pdo->prepare($request);
     //     $response = $insert->execute($values);
     //     return $response;
     // }
 
-     // check if user exist
-     public function isUserExist($login)
-     {
-         $request = "SELECT * FROM $this->tablename WHERE login = :login";
-         $select = $this->bdd->prepare($request);
-         $select->execute([
-             ':login' => $login
-         ]);
-         $result = $select->fetch(\PDO::FETCH_ASSOC);
-         if ($result) {
-             echo "indispo";
-         } else {
-             echo "dispo";
-         }
-         $this->bdd = null;
-     }
+    // check if user exist
+    public function isUserExist($login)
+    {
+        $request = "SELECT * FROM $this->tablename WHERE login = :login";
+        $select = $this->bdd->prepare($request);
+        $select->execute([
+            ':login' => $login
+        ]);
+        $result = $select->fetch(\PDO::FETCH_ASSOC);
+        if ($result) {
+            echo "indispo";
+        } else {
+            echo "dispo";
+        }
+        $this->bdd = null;
+    }
 
-     public function isLogged()
+    public function isLogged()
     {
         if (isset($_SESSION['user'])) {
             return true;
@@ -114,7 +112,7 @@ public function createUser(array $values)
 
 
 
-     // -------------- GETTERS --------
+    // -------------- GETTERS --------
     // get user data
     public function getLogin()
     {
@@ -127,27 +125,12 @@ public function createUser(array $values)
         return $this->id;
     }
 
-    // get user firstname
-   
-
-    // get user country
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-
     // get user email
     public function getEmail()
     {
         return $this->email;
     }
 
-    // get user role
-    public function getRole()
-    {
-        return $this->role;
-    }
     // -----------------------------------
 
     public function updateLogin($login, $old, $password)
@@ -210,7 +193,8 @@ public function createUser(array $values)
         }
     }
 
-    public function findOne($email){
+    public function findOne($email)
+    {
 
         $request = "SELECT * FROM user WHERE email= :email";
         $select = $this->bdd->prepare($request);
@@ -226,7 +210,4 @@ public function createUser(array $values)
     {
         echo parent::deleteOne($id, $colname);
     }
-
 }
-
-

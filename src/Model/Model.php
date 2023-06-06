@@ -66,4 +66,12 @@ abstract class Model
             return "error";
         }
     }
+    protected function addOne($id, $verif, $id_product){
+        $id = htmlspecialchars($id);
+        $verif = htmlspecialchars($verif);
+        $id_product = htmlspecialchars($id_product);
+
+        $request = "INSERT FROM $this->tablename WHERE id = :id ";
+    }
+
 }

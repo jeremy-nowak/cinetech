@@ -21,12 +21,10 @@ let pass_conf = document.querySelector('#pass_conf')
         email_insc.nextElementSibling.innerHTML = "Email non renseigné";
         
     }
-
     else if(pass_insc.value == ""){
         pass_insc.nextElementSibling.innerHTML = "Password non renseigné";
         
     }
-
     else if(pass_insc.value != pass_conf.value){
         pass_conf.nextElementSibling.innerHTML = "Les mots de pass ne correspondent pas";
         

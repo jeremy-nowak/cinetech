@@ -10,45 +10,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/9e12c4c238.js" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 
 <body>
     <header>
-        <?php
-        if (!isset($_SESSION["user"]['login'])) {
-        ?>
-            <div id="logRegDisplay" class="logRegDisplay">
-                <?php require("header.php") ?>
-                <p></p>
-            </div>
-        <?php
-        } else {
-        ?>
-            <div id="logRegDisplay" class="isLogged">
-                <div class="profilAccount ">
-                <img src="img/personne.png" class="profilAccount" alt="">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </div>
-            </div>
-        <?php
-        }
-
-        ?>
+    <?php
+    require_once "header.php"
+    ?>
 
         <div class="titre">
-            <img src="img/banniere2.png" width="100%" alt="">
+            <div class="titre1"><img src="img/titre1.png" alt=""></div>
+            <div class="titre2"><img src="img/titre2.png" alt=""></div>
+
         </div>
         <?php
         ?>
     </header>
     <div class="titre">
-        <p><img src="img/films.png" width="350px" alt=""></p>
+        <p class="titreTxt">Quelques films:</p>
     </div>
     <div class="displayFilms" id="displayFilms"></div>
 
     <div class="titre">
-        <p><img src="img/series.png" width="350px" alt=""></p>
+    <p class="titreTxt">Quelques séries:</p>
     </div>
     <div class="displayTvShows" id="displayTvShows"></div>
 </body>

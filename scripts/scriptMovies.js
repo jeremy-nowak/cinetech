@@ -22,8 +22,7 @@ async function categoriesDisplay() {
     const div = document.createElement("div");
     div.classList.add("displayFilms");
     div.setAttribute("data-id", category.id);
-
-
+    
     const checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
     const label = document.createElement("label");
