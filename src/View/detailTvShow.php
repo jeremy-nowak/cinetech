@@ -16,13 +16,15 @@
     <?php
     require_once "header.php"
     ?>
+    
     <div class="banniere2">
             <img src="/cinetech/img/detailMovie.png" alt="">
         </div>
+        
     </header>
+    <button type="submit" id="addToFavBtn">Add to favorites</button>
 
     <div id="displayDetail" class="displayDetail"></div>
-    <button type="submit" id="addToFavorites"  ></button>
 
 </body>
 </html>

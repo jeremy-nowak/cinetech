@@ -413,6 +413,9 @@ h1 {
   width: 30%;
   align-items: center;
   margin: auto;
+  background-color: gray;
+  border-radius: 15px;
+
 }
 
 #formRegis {
@@ -422,4 +425,6 @@ h1 {
   width: 30%;
   align-items: center;
   margin: auto;
+  background-color: gray;
+  border-radius: 15px;
 }

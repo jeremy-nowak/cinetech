@@ -18,20 +18,21 @@ async function categoriesDisplay() {
   );
   const categ = await promise.json();
 
+// --------------------Loop to get all the categ id-------------
   for (const category of categ.genres) {
     const div = document.createElement("div");
     div.classList.add("displayFilms");
     div.setAttribute("data-id", category.id);
-    
+    // -------------------Checkbox creation---------------------
     const checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
+    // ----------------Label creation with categories name-------
     const label = document.createElement("label");
     label.innerHTML = category.name;
     const miniDiv = document.createElement("div");
     div.classList.add("miniDiv");
-
     div.appendChild(label);
-
+    // ----------Setting up id on the checkbox------------
     checkbox.classList.add("genre", "displayFilms");
     checkbox.setAttribute("data-id", category.id);
 

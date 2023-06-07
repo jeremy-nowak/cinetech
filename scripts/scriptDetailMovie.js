@@ -165,13 +165,10 @@ console.log(detail)
   ${actorContent}
 </div>
   </div>
-  
   <div class="titreAndImg">
   <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
   </div>
   </div>
-
-
 </div>
 `;
 

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/9e12c4c238.js" crossorigin="anonymous"></script>
 
-
     <title>Movies</title>
 </head>
 <body>

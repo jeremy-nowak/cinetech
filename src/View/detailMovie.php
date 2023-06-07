@@ -25,6 +25,8 @@
 
     </header>
     <div id="displayDetail" class="displayDetail"></div>
+    <button type="submit" id="addToFavBtn">Add to favorites</button>
+
 
 
 </body>
