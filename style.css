@@ -129,6 +129,9 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
+.addedBdd{
+  background-color: greenyellow;
+}
 .oneElement img {
   border-radius: 15px;
 }
@@ -236,6 +239,7 @@ h1 {
     display: block;
   }
 
+
 }
 
 
@@ -281,11 +285,16 @@ h1 {
     gap: 2%;
     padding-bottom: 2%;
   }
+
 }
 
 @media only screen and (min-width: 480px) and (max-width: 768px) {
   .imgActor {
     display: block;
+  }
+  .isLogged {
+    display: flex;
+    justify-content: center;
   }
   header img:first-child {
     width: 65%;
@@ -335,6 +344,10 @@ h1 {
 @media only screen and (min-width: 0px) and (max-width: 480px) {
   .imgActor {
     display: block;
+  }
+  .isLogged {
+    display: flex;
+    justify-content: center;
   }
   header img:first-child {
     width: 90%;

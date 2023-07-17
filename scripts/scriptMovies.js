@@ -66,7 +66,6 @@ async function filmByCategorie(categories = null) {
     div.classList.add("detailMovie")
     divImg.classList.add("detailMovie")
   // -----------------
-    console.log(div)
 
     divImg.src = `https://image.tmdb.org/t/p/w500${films.poster_path}`;
     divImg.alt = films.name;

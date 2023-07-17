@@ -3,6 +3,9 @@
 session_start();
 
 use App\Controller\AuthController;
+use App\Controller\FavController;
+use App\Model\WishList;
+
 require "vendor/autoload.php";
 $router = new AltoRouter();
 $router->setBasePath('/cinetech');
@@ -27,6 +30,10 @@ $router->map('GET', '/tvShow/[i:id]', function ($id) {
 
 $router->map('GET', '/movie/[i:id]', function ($id) {
     require "src/View/detailMovie.php";
+
+    $authControleur = new FavController();
+    $authControleur->favCheck();
+    
 }, 'detailMovie');
 
 
@@ -64,11 +71,18 @@ $router->map('GET', '/profil', function () {
 }, 'profil');
 
 
-$router->map('POST', '/addToFavorite', function () {
 
-    $authControleur = new AuthController();
-    $authControleur->userConnect();
+$router->map('POST', '/addToFavorite/[i:id]', function ($id) {
+
+    if (isset($_SESSION["user"]['id'])) {
+        $user_id = $_SESSION["user"]['id'];
+
+      } else {  
+        echo 'ID utilisateur non trouvé';
+      }
     
+      $wishlist = new WishList();
+      $wishlist->addToWishlist($id, $user_id);
 }, 'favorites');
 
 
@@ -89,5 +103,3 @@ if (is_array($match) && is_callable($match['target'])) {
     // no route was matched
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
-
-?>

@@ -31,8 +31,8 @@
 <div class="divForm">
     <form method="post" id="formConnexion">
 
-        <label for="email">Mail:</label>
-        <input name="email" type="email" id="email" placeholder="Email">
+        <label for="login">login:</label>
+        <input name="login" type="login" id="login" placeholder="Login">
         <p></p>
 
         <label for="pass">Password:</label>

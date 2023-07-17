@@ -29,9 +29,7 @@
             <div id="logRegDisplay" class="isLogged">
         <div class="profilAccount ">
             <a href="/cinetech/profil"><i class="fa-regular fa-user fa-xl"></i></a>
-            <a href="/cinetech/logout"><i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>></a>
-
-            
+            <a href="/cinetech/logout"><i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></a>  
         </div>
     </div>
 

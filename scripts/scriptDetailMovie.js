@@ -1,5 +1,4 @@
 let displayDetail;
-
 window.addEventListener("DOMContentLoaded", () => {
   displayDetail = document.querySelector("#displayDetail");
 });
@@ -14,38 +13,43 @@ const options = {
 };
 
 const idDetail = window.location.pathname.split("/").pop();
+// let addToFavoritesBtn = document.querySelector("#addToFavoritesBtn");
+// console.log(addToFavoritesBtn)
 
 // -------------------------------Giving the idmovie to the fav button------------------------
 
-// let addToFavBtn = document.querySelector('#addToFavBtn');
-
-// addToFavBtn.setAttribute("data-id", idDetail);
-
 // ----------------------------function creation start--------------------------------
 
+// let response = "";
 async function addToFavorites(movieId) {
-  fetch('cinetech/addToFavorite', {
-    method: 'POST',
-    body: 'movieId=' + movieId
-  })
-  .then(function(response) {
-    if (response.ok) {
-      return response.text();
-    } else {
-      throw new Error('Une erreur s\'est produite. Veuillez réessayer.');
-    }
-  })
-  .then(function(data) {
-    if (data === 'success') {
-      addToFavBtn.classList.add('added');
-      addToFavBtn.innerText = 'Ajouté aux favoris';
-    } else {
-      throw new Error('Une erreur s\'est produite. Veuillez réessayer.');
-    }
-  })
+  // let data = new FormData;
 
-}
+    const promise =  await fetch("/cinetech/addToFavorite/" + movieId,{
+      method: "POST"
+    });
 
+    let response = await promise.text();
+    response = response.trim();
+    console.log(response)
+
+
+  // .then((response)=> await response.text())
+  // .then((response)=>{
+  //   response = response.trim()
+  // })
+
+
+    if (response === "ok") {
+      if(addToFavoritesBtn.classList.contains('addedBdd')){
+          addToFavoritesBtn.classList.remove('addedBdd');
+      }
+      else{
+          addToFavoritesBtn.classList.add('addedBdd');
+      }
+    }
+  } 
+
+  
 
 
 async function displayComment(idDetail) {
@@ -96,7 +100,7 @@ async function displayOne(idDetail) {
   for (const country of detail.production_countries) {
     countries += country.name + ", ";
   }
-console.log(detail)
+  console.log(detail);
   for (const producteur of detail.credits.crew) {
     if (producteur.job === "Director") {
       directorArray.push(producteur.name);
@@ -136,18 +140,27 @@ console.log(detail)
 
 
 
+
   // ---------------Start addEventListener---------
 
-//   addToFavBtn.addEventListener("click", function(e){
-//   e.preventDefault()
-//   movieId = idDetail;
-//   addToFavorites(idDetail)
-//   console.log(movieId)
-// })
+  //   addToFavoritesBtn.addEventListener("click", function (e) {
+  //     e.preventDefault();
+
+  //     addToFavoritesBtn.setAttribute("data-idMoovie", idDetail);
+  //     product_id = idDetail;
+      
+  //     addToFavorites(product_id);
+
+
+  // });
+
+
+
+
 
 
   // ---------------End addEventListener-----------
-  
+
   displayDetail.innerHTML += `
   <div class="content" id="content">
   <div class="oneElement">
@@ -165,17 +178,12 @@ console.log(detail)
   ${actorContent}
 </div>
   </div>
-  
   <div class="titreAndImg">
   <img src="https://image.tmdb.org/t/p/w500${detail.poster_path}" alt="">
   </div>
   </div>
-
-
 </div>
 `;
-
-
 }
 // ----------------------------Function creation end--------------------------------
 

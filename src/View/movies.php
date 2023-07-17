@@ -14,7 +14,7 @@
 <body>
     <header>
     <?php
-    require_once "header.php"
+    require_once "header.php";
     ?>
         <div class="banniere2">
             <img src="img/filmbycateg.png" alt="">

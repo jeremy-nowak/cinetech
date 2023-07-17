@@ -66,6 +66,13 @@ abstract class Model
             return "error";
         }
     }
+
+    protected function addToFavorites($id, $id_product){
+        
+
+
+
+    }
     protected function addOne($id, $verif, $id_product){
         $id = htmlspecialchars($id);
         $verif = htmlspecialchars($verif);

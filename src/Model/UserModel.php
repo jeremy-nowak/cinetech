@@ -178,12 +178,12 @@ class UserModel extends Model
         return parent::getAll();
     }
 
-    public function userExist($email)
+    public function userExist($login) 
     {
-        $request = "SELECT * FROM user WHERE email= :email";
+        $request = "SELECT * FROM user WHERE login= :login";
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":email" => $email
+            ":login" => $login
         ]);
         $result = $select->fetchAll(\PDO::FETCH_ASSOC);
         if ($result) {
@@ -193,13 +193,13 @@ class UserModel extends Model
         }
     }
 
-    public function findOne($email)
+    public function findOne($login)
     {
 
-        $request = "SELECT * FROM user WHERE email= :email";
+        $request = "SELECT * FROM user WHERE login= :login";
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":email" => $email
+            ":login" => $login
         ]);
         $result = $select->fetchAll(\PDO::FETCH_ASSOC);
 

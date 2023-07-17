@@ -1,4 +1,4 @@
-let email = document.querySelector('#email');
+let login = document.querySelector('#login');
 let pass = document.querySelector('#pass');
 let formConnexion = document.querySelector('#formConnexion')
 formConnexion.classList.add('fetched-element');
@@ -6,11 +6,11 @@ formConnexion.classList.add('fetched-element');
 function connexion(){
     let formConnexion = document.querySelector("#formConnexion");
     
-    email.nextElementSibling.innerHTML = ""
+    login.nextElementSibling.innerHTML = ""
     pass.nextElementSibling.innerHTML = ""
     
-    if(email.value == ""){
-        email.nextElementSibling.innerHTML = "Email non renseigné"
+    if(login.value == ""){
+        login.nextElementSibling.innerHTML = "login non renseigné"
     }
     else if(pass.value == ""){
         pass.nextElementSibling.innerHTML = "Mot de passe non renseigné"

@@ -1,9 +1,10 @@
 <?php
+namespace App\Model;
 use App\Model\Model;
 
 require_once "Model.php";
 
-class Wishlist extends Model{
+class WishList extends Model{
     
         protected $bdd;
         protected $tablename = "wishlist";
@@ -46,19 +47,19 @@ class Wishlist extends Model{
             }
         }
         
-        public function addToWishlist($user_id, $product_id)
+        public function addToWishlist($id, $user_id)
         {
             $user_id = htmlspecialchars($user_id);
-            $product_id = htmlspecialchars($product_id);
+            $id = htmlspecialchars($id);
     
             // Check whether the product is already in the user's wishlist
-            if ($this->isFavorite($user_id, $product_id)) {
-                $this->removeFromWishlist($user_id, $product_id);
+            if ($this->isFavorite($user_id, $id)) {
+                $this->removeFromWishlist($user_id, $id);
             } else {
                 // Insert the product into the wishlist table
-                $request = "INSERT INTO $this->tablename (id_user, id_product, date) VALUES (:id_user, :id_product, NOW())";
+                $request = "INSERT INTO $this->tablename (id_user, id_product) VALUES (:id_user, :id_product)";
                 $select = $this->bdd->prepare($request);
-                $select->execute([':id_user' => $user_id, ':id_product' => $product_id]);
+                $select->execute([':id_user' => $user_id, ':id_product' => $id]);
     
                 if ($select) {
                     echo "ok";

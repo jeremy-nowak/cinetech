@@ -39,13 +39,13 @@ class AuthController
     {
         
         $usermodel = new UserModel();
-        if (!empty($_POST['email']) && !empty($_POST['pass'])) {
+        if (!empty($_POST['login']) && !empty($_POST['pass'])) {
 
-            $email = htmlspecialchars(trim($_POST['email']));
+            $login = htmlspecialchars(trim($_POST['login']));
             $pass = htmlspecialchars(trim($_POST['pass']));
-            if ($usermodel->userExist($email)) {
+            if ($usermodel->userExist($login)) {
 
-                $userInfo = $usermodel->findOne($email);
+                $userInfo = $usermodel->findOne($login);
                 if (password_verify($pass, $userInfo[0]["password"])) {
 
                     $_SESSION['user'] = [
@@ -83,5 +83,6 @@ class AuthController
     public function profil(){
         require_once "src/View/profil.php";
     }
+
 
 }

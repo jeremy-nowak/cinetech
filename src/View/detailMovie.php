@@ -24,10 +24,23 @@
         </div>
 
     </header>
+<?php
+if(isset($_SESSION)) :?>
+
+    <!-- <button type="submit" id="addToFavoritesBtn"><i class="fa-brands fa-gratipay fa-lg"></i></button> -->
+    <?php else :?>
+        
+
+        <?php endif; ?> 
+
+
+
+    <?php
+    ?>
+
+
     <div id="displayDetail" class="displayDetail"></div>
 
 
 </body>
 </html>
-
-
